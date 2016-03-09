@@ -22,10 +22,29 @@ public class BookShop {
 		System.out.print("대여 하고 싶은 책의 번호를 입력하세요:");
 		int num = key.nextInt();
 		
+		if(books[num-1].getStateCode()==1){
+			books[num-1].rent();	
+		} else{
+			System.out.println("이미 대여중인 책입니다.");
+		}
 		// 입력된 번호에 맞는 책을 찾아 대여 되었음(상태코드=0)을 체크 합니다.
 
 		System.out.println("*****도서 정보 출력하기******");
 		displayBookInfo(books);
+	}
+	
+	public static void displayBookInfo(Book[] books){
+		
+		for(int i=0; i < books.length; i++){
+			
+			System.out.print(String.format
+					("책 제목:%s, 작가:%s, 대여 유무:", books[i].getTitle(), books[i].getAuthor()));
+			if((books[i].getStateCode())==1){
+				System.out.println("재고 있음");
+			} else{
+				System.out.println("대여중");
+			}
+		}
 	}
 
 }
